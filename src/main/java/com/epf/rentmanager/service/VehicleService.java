@@ -60,7 +60,13 @@ public class VehicleService {
 						throw new ServiceException("Le véhicule fait partie d'une réservation en cours. Il est donc impossible de le supprimer pour le moment.");
 					}
 				}
-				reservationDao.setVehicleIdToNull(vehicle.getId());
+				int deleted_reservations = 0;
+				for (Reservation reservation : vehicleReservations) {
+					deleted_reservations += reservationDao.delete(reservation);
+				}
+				if (deleted_reservations != vehicleReservations.size()) {
+					throw new ServiceException("Toutes les réservations du véhicule n'ont pas pu être supprimées de la base de données.");
+				}
 			}
 		} catch (DaoException e) {
 			throw new ServiceException("Problème(s) rencontré(s) lors du checking des réservations actives du véhicule.");

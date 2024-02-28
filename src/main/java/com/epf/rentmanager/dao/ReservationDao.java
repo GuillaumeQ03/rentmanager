@@ -26,8 +26,7 @@ public class ReservationDao {
 	private static final String FIND_RESERVATIONS_BY_CLIENT_QUERY = "SELECT id, vehicle_id, debut, fin FROM Reservation WHERE client_id=?;";
 	private static final String FIND_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT id, client_id, debut, fin FROM Reservation WHERE vehicle_id=?;";
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
-	private static final String SET_VEHICLE_ID_NULL_QUERY = "UPDATE Reservation SET vehicle_id = null WHERE vehicle_id=?;";
-		
+
 	public int create(Reservation reservation) throws DaoException {
 		try (Connection connection = ConnectionManager.getConnection(); PreparedStatement ps = connection.prepareStatement(CREATE_RESERVATION_QUERY, Statement.RETURN_GENERATED_KEYS)) {
 			ps.setInt(1, reservation.getClient_id());
@@ -119,12 +118,4 @@ public class ReservationDao {
 		return res;
 	}
 
-	public void setVehicleIdToNull(int vehicleId) throws DaoException {
-		try (Connection connection = ConnectionManager.getConnection(); PreparedStatement ps = connection.prepareStatement(SET_VEHICLE_ID_NULL_QUERY)) {
-			ps.setInt(1, vehicleId);
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			throw new DaoException();
-		}
-	}
 }
