@@ -2,6 +2,7 @@ package com.epf.rentmanager.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.dao.ClientDao;
@@ -32,9 +33,21 @@ public class ClientService {
 		try {
 			String nom = client.getNom();
 			String prenom = client.getPrenom();
+			LocalDate dateNaissance = client.getDateNaissance();
+			String email = client.getEmail();
+			System.out.println(email);
 
-			if (nom == null || prenom == null || nom.isEmpty() || prenom.isEmpty()) {
-				throw new ServiceException("Le client doit posséder un nom et un prénom.");
+			List<Client> allClients = clientDao.findAll();
+			System.out.println(allClients);
+			for (Client clientResearched : allClients) {
+				System.out.println(clientResearched.getEmail());
+				if (Objects.equals(clientResearched.getEmail(), email)) {
+					throw new ServiceException("Cet email est déjà utilisé. Merci d'en choisir un autre.");
+				}
+			}
+
+			if (nom == null || prenom == null || nom.length() < 3 || prenom.length() < 3 || ((LocalDate.now()).minusYears(18)).isBefore(dateNaissance)) {
+				throw new ServiceException("Le client doit posséder un nom, un prénom et avoir plus de 18 ans.");
 			} else {
 				client.setNom(client.getNom().toUpperCase());
 				return clientDao.create(client);

@@ -68,6 +68,8 @@ public class ClientDao {
 				res.setPrenom(resultset.getString(3));
 				res.setEmail(resultset.getString(4));
 				res.setDateNaissance(resultset.getDate(5).toLocalDate());
+			} else {
+				throw new DaoException("Le client recherché n'existe pas.");
 			}
 		} catch (SQLException e) {
 			throw new DaoException();

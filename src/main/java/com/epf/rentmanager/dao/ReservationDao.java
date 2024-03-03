@@ -41,6 +41,7 @@ public class ReservationDao {
 				throw new DaoException("Aucune clé autogénérée de retourné.");
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new DaoException();
 		}
 	}

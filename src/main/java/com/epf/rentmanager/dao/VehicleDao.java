@@ -63,6 +63,8 @@ public class VehicleDao {
 				res.setId(resultset.getInt(1));
 				res.setConstructeur(resultset.getString(2));
 				res.setNb_places(resultset.getInt(3));
+			} else {
+				throw new DaoException("Le véhicule recherché n'existe pas.");
 			}
 		} catch (SQLException e) {
 			throw new DaoException();
