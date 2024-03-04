@@ -48,6 +48,7 @@ public class ReservationService {
             List<Reservation> allVehicleReservations = reservationDao.findResaByVehicleId(reservationVehicleId);
             for (Reservation reservation1 : allVehicleReservations) {
                 if ((reservation1.getDebut()).equals(dateDebut)) {
+                    // Besoin de fixer la condition car celle-ci ne prend pas en compte si un vehicule est reserve sur plusieurs jours.
                     throw new ServiceException("La voiture sélectionnée est déjà réservée sur cette journée. Veuillez choisir une autre date.");
                 }
             }
