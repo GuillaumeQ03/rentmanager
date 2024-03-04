@@ -5,7 +5,6 @@ import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
-import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
 
 import java.time.LocalDate;
@@ -32,25 +31,29 @@ public class ReservationService {
 
     public int create(Reservation reservation) throws ServiceException {
         try {
+            int reservationVehicleId = reservation.getVehicle_id();
+            int reservationClientId = reservation.getClient_id();
+            LocalDate dateDebut = reservation.getDebut();
+
             try {
-                clientDao.findById(reservation.getClient_id());
+                clientDao.findById(reservationClientId);
             } catch (DaoException e) {
                 throw new ServiceException("Impossible de créer la réservation, le client donné n'existe pas.");
             }
             try {
-                vehicleDao.findById(reservation.getVehicle_id());
+                vehicleDao.findById(reservationVehicleId);
             } catch (DaoException e) {
                 throw new ServiceException("Impossible de créer la réservation, le véhicule donné n'existe pas.");
             }
-            int reservationVehicleId = reservation.getVehicle_id();
-            LocalDate dateDebut = reservation.getDebut();
-            List<Reservation> allReservations = reservationDao.findAll();
-            for (Reservation reservation1 : allReservations) {
-                if ((reservation1.getDebut()).equals(dateDebut) && reservation1.getVehicle_id() == reservationVehicleId) {
+            List<Reservation> allVehicleReservations = reservationDao.findResaByVehicleId(reservationVehicleId);
+            for (Reservation reservation1 : allVehicleReservations) {
+                if ((reservation1.getDebut()).equals(dateDebut)) {
                     throw new ServiceException("La voiture sélectionnée est déjà réservée sur cette journée. Veuillez choisir une autre date.");
                 }
             }
+
             return reservationDao.create(reservation);
+
         } catch (DaoException e) {
             e.printStackTrace();
             throw new ServiceException("Impossible de créer une nouvelle réservation.");
