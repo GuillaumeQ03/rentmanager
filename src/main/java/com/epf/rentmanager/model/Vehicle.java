@@ -4,12 +4,14 @@ public class Vehicle {
 
     private int id;
     private String constructeur;
+    private String modele;
     private int nb_places;
 
     // constructeurs
-    public Vehicle(int id, String constructeur, int nb_places) {
+    public Vehicle(int id, String constructeur, String modele, int nb_places) {
         this.id = id;
         this.constructeur = constructeur;
+        this.modele = modele;
         this.nb_places = nb_places;
     }
 
@@ -24,6 +26,8 @@ public class Vehicle {
         return constructeur;
     }
 
+    public String getModele() { return modele; }
+
     public int getNb_places() {
         return nb_places;
     }
@@ -37,6 +41,8 @@ public class Vehicle {
         this.constructeur = constructeur;
     }
 
+    public void setModele(String modele) { this.modele = modele; }
+
     public void setNb_places(int nb_places) {
         this.nb_places = nb_places;
     }
@@ -46,6 +52,7 @@ public class Vehicle {
         return "Vehicle{" +
                 "id=" + id +
                 ", constructeur='" + constructeur + '\'' +
+                ", modele='" + modele + '\'' +
                 ", nb_places=" + nb_places +
                 '}';
     }

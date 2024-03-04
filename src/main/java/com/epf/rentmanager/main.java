@@ -24,8 +24,8 @@ public class main {
         LocalDate date1 = LocalDate.of(2005, 5, 3);
         LocalDate date2 = LocalDate.of(2005, 8, 21);
         LocalDate date3 = LocalDate.of(2025, 10, 30);
-        Client client1 = new Client(2, "Guillaume", "QUINTIN", "guillaume.quintin2003@epfedu.fr", date1);
-        Vehicle vehicle1 = new Vehicle(23, "Nissan", 4);
+        Client client1 = new Client(3, "Guillaume", "QUINTIN", "guillaume.quintin2003@epfedu.fr", date1);
+        Vehicle vehicle1 = new Vehicle(2, "Nissan", "Modele 3", 9);
         Reservation reservation1 = new Reservation(1, client1, vehicle1, date1, date2);
         int IDClientsCreated;
         int nbClientsDeleted;
@@ -50,8 +50,8 @@ public class main {
 //            System.out.println(listClient);
 
 
-//            listVehicle = vehicleService.findAll();
-//            System.out.println(listVehicle);
+            listVehicle = vehicleService.findAll();
+            System.out.println(listVehicle);
 
 //            IDVehiclesCreated = vehicleService.create(vehicle1);
 //            System.out.println(IDVehiclesCreated);
@@ -64,13 +64,13 @@ public class main {
 //            System.out.println(listVehicle);
 
 
-            listReservation = reservationService.findAll();
-            System.out.println(listReservation);
+//            listReservation = reservationService.findAll();
+//            System.out.println(listReservation);
 
-            IDReservationsCreated = reservationService.create(reservation1);
-            System.out.println(IDReservationsCreated);
-            listReservation = reservationService.findAll();
-            System.out.println(listReservation);
+//            IDReservationsCreated = reservationService.create(reservation1);
+//            System.out.println(IDReservationsCreated);
+//            listReservation = reservationService.findAll();
+//            System.out.println(listReservation);
 
 //            nbReservationsDeleted = reservationService.delete(reservation1);
 //            System.out.println(nbReservationsDeleted);

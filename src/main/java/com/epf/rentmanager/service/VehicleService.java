@@ -32,12 +32,13 @@ public class VehicleService {
 	public int create(Vehicle vehicle) throws ServiceException {
 		try {
 			String manufacturer = vehicle.getConstructeur();
+			String modele = vehicle.getModele();
 			int nbPlaces = vehicle.getNb_places();
 
-			if (manufacturer == null || manufacturer.isEmpty()) {
-				throw new ServiceException("Le véhicule doit posséder un constructeur.");
-			} else if (nbPlaces < 1) {
-				throw new ServiceException("Le véhicule doit au minimum posséder une place.");
+			if (manufacturer == null || modele == null || manufacturer.isEmpty() || modele.isEmpty()) {
+				throw new ServiceException("Le véhicule doit posséder un constructeur et un modèle.");
+			} else if (nbPlaces < 2 || nbPlaces > 9) {
+				throw new ServiceException("Le nombre de places dans le véhicule doit être compris entre 2 et 9.");
 			} else {
 				return vehicleDao.create(vehicle);
 			}
@@ -90,6 +91,7 @@ public class VehicleService {
 		try {
 			return vehicleDao.findAll();
 		} catch (DaoException e) {
+			e.printStackTrace();
 			throw new ServiceException("Aucun véhicule trouvé.");
 		}
 	}

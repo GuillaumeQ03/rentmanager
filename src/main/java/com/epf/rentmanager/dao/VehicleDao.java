@@ -19,15 +19,16 @@ public class VehicleDao {
 		return instance;
 	}
 	
-	private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, nb_places) VALUES(?, ?);";
+	private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES(?, ?, ?);";
 	private static final String DELETE_VEHICLE_QUERY = "DELETE FROM Vehicle WHERE id=?;";
-	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle WHERE id=?;";
-	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle;";
+	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicle WHERE id=?;";
+	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicle;";
 	
 	public int create(Vehicle vehicle) throws DaoException {
 		try (Connection connection = ConnectionManager.getConnection(); PreparedStatement ps = connection.prepareStatement(CREATE_VEHICLE_QUERY, Statement.RETURN_GENERATED_KEYS)) {
 			ps.setString(1, vehicle.getConstructeur());
-			ps.setInt(2, vehicle.getNb_places());
+			ps.setString(2, vehicle.getModele());
+			ps.setInt(3, vehicle.getNb_places());
 			ps.executeUpdate();
 			ResultSet resultSet = ps.getGeneratedKeys();
 			if (resultSet.next()) {
@@ -62,7 +63,8 @@ public class VehicleDao {
 			if (resultset.next()){
 				res.setId(resultset.getInt(1));
 				res.setConstructeur(resultset.getString(2));
-				res.setNb_places(resultset.getInt(3));
+				res.setModele(resultset.getString(3));
+				res.setNb_places(resultset.getInt(4));
 			} else {
 				throw new DaoException("Le véhicule recherché n'existe pas.");
 			}
@@ -80,10 +82,12 @@ public class VehicleDao {
 				Vehicle vehicle = new Vehicle();
 				vehicle.setId(resultset.getInt(1));
 				vehicle.setConstructeur(resultset.getString(2));
-				vehicle.setNb_places(resultset.getInt(3));
+				vehicle.setModele(resultset.getString(3));
+				vehicle.setNb_places(resultset.getInt(4));
 				res.add(vehicle);
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new DaoException();
 		}
 		return res;
