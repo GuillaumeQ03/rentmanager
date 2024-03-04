@@ -84,6 +84,14 @@ public class ReservationService {
         }
     }
 
+    public List<Reservation> findResaByVehicleIdAndClientId(int clientId, int vehicleId) throws ServiceException {
+        try {
+            return reservationDao.findResaByVehicleIdAndClientId(clientId, vehicleId);
+        } catch (DaoException e) {
+            throw new ServiceException("Aucune réservation n'a a été trouvée pour le véhicule et le client donnés.");
+        }
+    }
+
     public List<Reservation> findAll() throws ServiceException {
         try {
             return reservationDao.findAll();
