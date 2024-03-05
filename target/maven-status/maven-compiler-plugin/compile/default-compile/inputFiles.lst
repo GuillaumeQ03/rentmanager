@@ -1,4 +1,5 @@
 C:\Users\guill\Documents\4A\COURSES\JAVA\TP4\rentmanager\src\main\java\com\epf\rentmanager\ui\cli\ClientInterface.java
+C:\Users\guill\Documents\4A\COURSES\JAVA\TP4\rentmanager\src\main\java\com\epf\rentmanager\configuration\AppConfiguration.java
 C:\Users\guill\Documents\4A\COURSES\JAVA\TP4\rentmanager\src\main\java\com\epf\rentmanager\dao\ReservationDao.java
 C:\Users\guill\Documents\4A\COURSES\JAVA\TP4\rentmanager\src\main\java\com\epf\rentmanager\model\Client.java
 C:\Users\guill\Documents\4A\COURSES\JAVA\TP4\rentmanager\src\main\java\com\epf\rentmanager\servlet\HomeServlet.java
@@ -13,6 +14,7 @@ C:\Users\guill\Documents\4A\COURSES\JAVA\TP4\rentmanager\src\main\java\com\epf\r
 C:\Users\guill\Documents\4A\COURSES\JAVA\TP4\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehicleCreateServlet.java
 C:\Users\guill\Documents\4A\COURSES\JAVA\TP4\rentmanager\src\main\java\com\epf\rentmanager\model\Vehicle.java
 C:\Users\guill\Documents\4A\COURSES\JAVA\TP4\rentmanager\src\main\java\com\epf\rentmanager\service\VehicleService.java
+C:\Users\guill\Documents\4A\COURSES\JAVA\TP4\rentmanager\src\main\java\com\epf\rentmanager\configuration\WebConfiguration.java
 C:\Users\guill\Documents\4A\COURSES\JAVA\TP4\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehicleListServlet.java
 C:\Users\guill\Documents\4A\COURSES\JAVA\TP4\rentmanager\src\main\java\com\epf\rentmanager\main.java
 C:\Users\guill\Documents\4A\COURSES\JAVA\TP4\rentmanager\src\main\java\com\epf\rentmanager\service\ClientService.java

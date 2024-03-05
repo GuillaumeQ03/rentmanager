@@ -11,7 +11,7 @@ import com.epf.rentmanager.persistence.ConnectionManager;
 public class ReservationDao {
 
 	private final VehicleDao vehicleDao = VehicleDao.getInstance();
-	private final ClientDao clientDao = ClientDao.getInstance();
+	private ClientDao clientDao;
 	private static ReservationDao instance = null;
 	private ReservationDao() {}
 	public static ReservationDao getInstance() {

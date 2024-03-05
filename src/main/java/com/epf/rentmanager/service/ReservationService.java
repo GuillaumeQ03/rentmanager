@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ReservationService {
 
-    private final ClientDao clientDao = ClientDao.getInstance();
+    private ClientDao clientDao;
     private final VehicleDao vehicleDao = VehicleDao.getInstance();
     private final ReservationDao reservationDao;
     public static ReservationService instance;
